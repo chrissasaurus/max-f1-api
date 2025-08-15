@@ -3,7 +3,7 @@ from app.services.fastf1_service import get_race_schedule
 
 router = APIRouter()
 
-@router.get("/schedule/{year}")
+@router.get("/schedule/{year}", summary="Get F1 Race Schedule")
 def race_schedule(year: int):
     """Get the F1 race schedule for a given year."""
     try:
