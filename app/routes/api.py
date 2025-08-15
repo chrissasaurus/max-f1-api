@@ -10,6 +10,12 @@ from app.services.fast_f1.fastf1_service import (
 
 from app.services.sync.sync_service import sync_season_data
 
+from app.services.fast_f1.fastf1_service import (
+    get_driver_standings as fastf1_get_driver_standings,
+    get_constructor_standings as fastf1_get_constructor_standings,
+    get_race_results as fastf1_get_race_results
+)
+
 
 router = APIRouter()
 
@@ -37,7 +43,7 @@ def driver_standings(year: int, round_number: int):
     Get driver standings after a given round.
     `round_number` is the race round (1 = season opener, etc.)
     """
-    return {"year": year, "round": round_number, "standings": get_driver_standings(year, round_number)}
+    return {"year": year, "round": round_number, "standings": fastf1_get_driver_standings(year, round_number)}
 
 
 @router.get("/constructor-standings/{year}/{round_number}", summary="Get Constructor Standings")
@@ -46,13 +52,13 @@ def constructor_standings(year: int, round_number: int):
     Get constructor standings after a given round.
     Calculated from driver points by team.
     """
-    return {"year": year, "round": round_number, "standings": get_constructor_standings(year, round_number)}
+    return {"year": year, "round": round_number, "standings": fastf1_get_constructor_standings(year, round_number)}
 
 
 @router.get("/race-results/{year}/{round_number}", summary="Get Race Results")
 def race_results(year: int, round_number: int):
     """Get official race results for a given round."""
-    return {"year": year, "round": round_number, "results": get_race_results(year, round_number)}
+    return {"year": year, "round": round_number, "results": fastf1_get_race_results(year, round_number)}
 
 @router.post("/sync")
 async def sync_data(year: int | None = None):

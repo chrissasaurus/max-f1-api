@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import f1
+from app.routes import api
 
 app = FastAPI(
     title="F1 API Backend",
@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 # Register routes
-app.include_router(f1.router, prefix="/api/f1", tags=["F1 Data"])
+app.include_router(api.router, prefix="/api/api", tags=["F1 Data"])
 
 @app.get("/", summary="Health Check")
 def root():
