@@ -3,9 +3,15 @@ fastf1_cache/
 
 # Python cache files
 __pycache__/
+app/__pycache__/
 app/services/__pycache__/
 app/routes/__pycache__/
 app/tests/__pycache__/
+app/utils/__pycache__/
+app/services/fast_f1/__pycache__/
+app/services/sync/__pycache__/
+app/services/standings/__pycache__/
+
 *.py[cod]
 *$py.class
 
